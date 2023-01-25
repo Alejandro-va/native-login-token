@@ -7,14 +7,15 @@ import {
 } from "react-native";
 
 import GamingImg from "./assets/images/misc/gaming.svg";
-//const GamingImg = require("./assets/images/misc/maming.svg");
-//import { Icon } from "react-native-vector-icons/Icon";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { AuthProvider } from "./src/context/AuthContext";
 //import AppNav from "./src/navigation/AppNav";
 
+import { AuthProvider } from "./src/context/AuthContext";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+//SCREENS
+import HomeScreen from "./src/screens/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,11 +24,15 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          component={Main}
           name="Main"
+          component={Main}
           options={{ headerShown: false }}
         />
-        <Stack.Screen component={Home} name="Home" />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

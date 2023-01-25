@@ -25,3 +25,7 @@ npm install react-native-screens react-native-safe-area-context ---ESTE YA NO
 npx expo install react-native-safe-area-context@4.4.1 react-native-screens@~3.18.0
 npx pod-install ios
 npm install @react-navigation/native-stack
+
+para hacer carrusel
+https://www.npmjs.com/package/react-native-new-snap-carousel
+npm i react-native-new-snap-carousel
