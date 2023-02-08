@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,16 +7,28 @@ import {
   ImageBackground,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import Feather from "react-native-vector-icons/FontAwesome";
 
 import Carousel from "react-native-new-snap-carousel/src/carousel/Carousel";
 import BannerSlider from "../components/BannerSlider";
-import { sliderData } from "../model/data";
+import { freeGames, paidGames, sliderData } from "../model/data";
+import CustomSwitch from "../components/CustomSwitch";
+import ListenItem from "../components/ListenItem";
 
-const HomeScreen = () => {
-  const renderBanner = ({ item, index }) => {
+const HomeScreen = ({ navigation }) => {
+  /*   const renderBanner = ({ item, index }) => {
     return <BannerSlider data={item} />;
+  };
+ */
+  /******************************************
+   * BOTON DE SELECION PAID OR  FREE
+   *****************************************/
+  const [gamesTab, setGamesTab] = useState(1);
+
+  const onSelectSwitch = (value) => {
+    setGamesTab(value);
   };
 
   return (
@@ -33,11 +45,13 @@ const HomeScreen = () => {
           <Text style={{ fontSize: 18, fontFamily: "Roboto" }}>
             Hello Alejandro
           </Text>
-          <ImageBackground
-            source={require("../../assets/images/user-profile.jpg")}
-            style={{ width: 35, height: 25 }}
-            imageStyle={{ borderRadius: 25 }}
-          />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <ImageBackground
+              source={require("../../assets/images/user-profile.jpg")}
+              style={{ width: 35, height: 25 }}
+              imageStyle={{ borderRadius: 25 }}
+            />
+          </TouchableOpacity>
         </View>
         <View
           style={{
@@ -71,8 +85,7 @@ const HomeScreen = () => {
             <Text style={{ color: "#0aada8" }}>See all</Text>
           </TouchableOpacity>
         </View>
-
-        <Carousel
+        {/*         <Carousel
           ref={(c) => {
             this._carousel = c;
           }}
@@ -80,7 +93,22 @@ const HomeScreen = () => {
           renderItem={renderBanner} //constante q esta arriba y maneja el componente BannerSlider
           sliderWidth={sliderWidth}
           itemWidth={itemWidth}
-        />
+        />*/}
+        {/******************************************
+         * BOTON DE SELECION PAID OR  FREE
+         *****************************************/}
+        <View style={{ marginVertical: 20 }}>
+          <CustomSwitch
+            selectionMode={1}
+            option1="Free to play"
+            option2={"Paid games"}
+            onSelectSwitch={onSelectSwitch}
+          />
+        </View>
+        {gamesTab == 1 &&
+          freeGames.map((item) => <ListenItem item={item} key={item.id} />)}
+        {gamesTab == 2 &&
+          paidGames.map((item) => <ListenItem item={item} key={item.id} />)}
       </ScrollView>
     </SafeAreaView>
   );

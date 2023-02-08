@@ -1,94 +1,24 @@
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-
-import GamingImg from "./assets/images/misc/gaming.svg";
-import Icon from "react-native-vector-icons/FontAwesome";
-//import AppNav from "./src/navigation/AppNav";
-
+import * as React from "react";
 import { AuthProvider } from "./src/context/AuthContext";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import "react-native-gesture-handler";
 
 //SCREENS
-import HomeScreen from "./src/screens/HomeScreen";
 
-const Stack = createNativeStackNavigator();
+import AuthStack from "./src/navigation/AuthStack";
+import AppNav from "./src/navigation/AppNav";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      <AppNav />
+      {/* <AuthStack /> */}
     </NavigationContainer>
   );
 }
 
-export function Main({ navigation }) {
-  return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        backgroundColor: "#fff",
-        alignItems: "center",
-      }}
-    >
-      <View style={{ marginTop: 30 }}>
-        <Text
-          style={{
-            fontSize: 30,
-            fontWeight: "bold",
-            color: "#20315f",
-            /* fontFamily: "inter-bold", */
-          }}
-        >
-          Gameon
-        </Text>
-      </View>
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <GamingImg
-          width={300}
-          height={300}
-          style={{ transform: [{ rotate: "-15deg" }] }}
-        />
-      </View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
-        style={{
-          backgroundColor: "#ad40af",
-          padding: 20,
-          width: "90%",
-          borderRadius: 5,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 50,
-        }}
-      >
-        <Text style={{ fontWeight: "bold", color: "#fff", fontSize: 18 }}>
-          Let's Begin
-        </Text>
-        <Icon name="rocket" size={22} color="#fff" />
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-}
-
-const Home = () => {
+/* const Home = () => {
   return (
     <View
       style={{
@@ -101,7 +31,7 @@ const Home = () => {
       <Text>Home Component</Text>
     </View>
   );
-};
+}; */
 
 /* const styles = StyleSheet.create({
   container: {
